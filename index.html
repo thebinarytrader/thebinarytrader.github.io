@@ -17,6 +17,7 @@
     <title>Become a Successful Binary Options Trader</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 text-gray-900">
 
@@ -70,7 +71,7 @@
 
         <section class="max-w-4xl mb-8">
             <h2 class="text-2xl font-bold text-teal-600 mb-4">Where Should You Start?</h2>
-            <p class="text-xl text-gray-700 leading-relaxed">
+            <p class="text-xl text-gray-700 leading-relaxed mb-2">
                 My advice for beginners: Start with Binary Options. It’s simple to understand, and platforms like PocketOption provide the tools you need to begin your journey.
             </p>
             <p class="text-xl text-gray-700 leading-relaxed">
@@ -103,6 +104,26 @@
                 PocketOption provides everything you need to start your trading journey with confidence. Whether you’re a beginner or a seasoned trader, this platform has all the tools and resources you need to succeed.
             </p>
         </section>
+
+        <!-- User Reviews Section -->
+        <section class="max-w-4xl mb-8">
+            <h2 class="text-2xl font-bold text-teal-600 mb-4 text-center">🌟 User Reviews on PocketOption 🌟</h2>
+            <div class="relative w-full max-w-xl">
+                <div id="review-container" class="flex flex-col items-center space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg max-w-xs text-left">
+                        <div class="text-2xl">✅</div>
+                        <p class="font-semibold mt-2">"Great platform for beginners!"</p>
+                        <p class="text-yellow-500">★★★★☆</p>
+                        <p class="text-gray-600 mt-2">"PocketOption has a simple interface and tons of assets to trade. I started with a demo account, and now I'm making real profits!"</p>
+                        <p class="text-gray-800 font-bold mt-3">— Michael D.</p>
+                    </div>
+                </div>
+                <div class="flex justify-between mt-4">
+                    <button onclick="prevReview()" class="px-4 py-2 bg-teal-600 text-white rounded-lg">Previous</button>
+                    <button onclick="nextReview()" class="px-4 py-2 bg-teal-600 text-white rounded-lg">Next</button>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Sticky Footer with Affiliate Button -->
@@ -118,5 +139,84 @@
         <p class="mt-4 text-sm">&copy; 2025 BinaryTrader. All Rights Reserved.</p>
     </div>
 
+    <script>
+        const reviews = [
+            { emoji: "✅", title: "Great platform for beginners!", rating: "★★★★☆", text: "PocketOption has a simple interface and tons of assets to trade. I started with a demo account, and now I’m making real profits!", author: "Michael D." },
+            { emoji: "💰", title: "$1 to $10000", rating: "★★★★★", text: "I started trading with one dollar and ended up with 10k after a few hours! I might had some luck, but I ran away with the gain!", author: "Peter F." },
+            { emoji: "⚡", title: "I quit my daily job!", rating: "★★★★★", text: "I burnt my first account, but kept learning and after 3 months I quit my daily job. Now I’m a full time trader, and earn more than ever before.", author: "Doug M." },
+            { emoji: "🚀", title: "Fast withdrawals, no issues", rating: "★★★★★", text: "I was woried about withdrawals, but my funds arrived within a few hours. Support was also helpful.", author: "Sarah J." },            
+            { emoji: "📈", title: "High payouts and smooth trading experience!", rating: "★★★★☆", text: "The payout percentages are higher than most platforms, and I love how quickly trades execute.", author: "Kevin T." },
+            { emoji: "📈", title: "Simple yet professional", rating: "★★★★★", text: "I was trading traditional forex markets with MetaTrader for a decade. Then I switched to binary options and I love that risk management is integrated into the system. No stop loss needed!", author: "Frank J." },
+            { emoji: "💡", title: "Needs more indicators, but overall good!", rating: "★★★★☆", text: "The platform is great, but I wish there were more advnaced trading tools and custom indicators.", author: "Anna R." },
+            { emoji: "😍", title: "My life got on track", rating: "★★★★★", text: "As a single mother with credit card debt, I was struggling. Then I found binary options trading. It wasn’t easy, but with hard work, I became debt-free and secured my son’s future. Trading gave me the freedom to change our lives.", author: "Nicole C." },
+            { emoji: "🔥", title: "Best for short-term trading!", rating: "★★★★★", text: "If you’re into turbo and short-term trades, this platform is one of the best out there.", author: "James P." },
+            { emoji: "💰", title: "Easy to use, great payouts", rating: "★★★★☆", text: "The user interface is super friendly, and I love how easy it is to start trading.", author: "Emma W." },
+            { emoji: "⚡", title: "Super fast trade execution", rating: "★★★★★", text: "Trades execute instantly with no lag. Makes scalping really effective!", author: "Daniel K." }
+        ];
+
+        let currentReviewIndex = 0;
+
+        function updateReview() {
+            const reviewContainer = document.getElementById("review-container");
+            reviewContainer.innerHTML = ""; // Clear the container before adding new reviews
+
+            const prevIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
+            const nextIndex = (currentReviewIndex + 1) % reviews.length;
+
+            // Add previous review
+            const prevReview = document.createElement("div");
+            prevReview.classList.add("review-item", "prev");
+            prevReview.innerHTML = `
+                <div class="bg-white p-6 rounded-2xl shadow-lg max-w-xs text-left">
+                    <div class="text-2xl">${reviews[prevIndex].emoji}</div>
+                    <p class="font-semibold mt-2">"${reviews[prevIndex].title}"</p>
+                    <p class="text-yellow-500">${reviews[prevIndex].rating}</p>
+                    <p class="text-gray-600 mt-2">"${reviews[prevIndex].text}"</p>
+                    <p class="text-gray-800 font-bold mt-3">— ${reviews[prevIndex].author}</p>
+                </div>
+            `;
+            reviewContainer.appendChild(prevReview);
+
+            // Add current review
+            const currentReview = document.createElement("div");
+            currentReview.classList.add("review-item", "active");
+            currentReview.innerHTML = `
+                <div class="bg-white p-6 rounded-2xl shadow-lg max-w-xs text-left">
+                    <div class="text-2xl">${reviews[currentReviewIndex].emoji}</div>
+                    <p class="font-semibold mt-2">"${reviews[currentReviewIndex].title}"</p>
+                    <p class="text-yellow-500">${reviews[currentReviewIndex].rating}</p>
+                    <p class="text-gray-600 mt-2">"${reviews[currentReviewIndex].text}"</p>
+                    <p class="text-gray-800 font-bold mt-3">— ${reviews[currentReviewIndex].author}</p>
+                </div>
+            `;
+            reviewContainer.appendChild(currentReview);
+
+            // Add next review
+            const nextReview = document.createElement("div");
+            nextReview.classList.add("review-item", "next");
+            nextReview.innerHTML = `
+                <div class="bg-white p-6 rounded-2xl shadow-lg max-w-xs text-left">
+                    <div class="text-2xl">${reviews[nextIndex].emoji}</div>
+                    <p class="font-semibold mt-2">"${reviews[nextIndex].title}"</p>
+                    <p class="text-yellow-500">${reviews[nextIndex].rating}</p>
+                    <p class="text-gray-600 mt-2">"${reviews[nextIndex].text}"</p>
+                    <p class="text-gray-800 font-bold mt-3">— ${reviews[nextIndex].author}</p>
+                </div>
+            `;
+            reviewContainer.appendChild(nextReview);
+        }
+
+        function nextReview() {
+            currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+            updateReview();
+        }
+
+        function prevReview() {
+            currentReviewIndex = (currentReviewIndex - 1 + reviews.length) % reviews.length;
+            updateReview();
+        }
+
+        updateReview();
+    </script>
 </body>
 </html>
